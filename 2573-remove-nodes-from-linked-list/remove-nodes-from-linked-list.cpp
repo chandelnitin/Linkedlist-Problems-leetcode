@@ -44,7 +44,7 @@
 
 
 
-class Solution {  // o(n) sc O(n)
+class Solution {  // o(n) sc O(1)
 public:   // approch hmm list me last traverse krnege jiske liye hme list ko revrse krna pdega o
 // last se traverse krte time hmm max elemnt strore krte chalnge agr aage aane wale element max se chota hai iska matlab curr element ke right me ysse bada ekement hai jaise  13 3 8 list me 8 maximum hai suru me.(last element hmesa aayega ouptput me kuki sabse last elemnt ke right me koi greater element nhi hai). ab hmm 3 pr aayenge or chek krenge ki 3 max se bada hai kya nhi hai to 3 output me nhi aayega kuki max element hmm 3 ke right se hi le raha hai . or agr hme max elelt se bada element milta hai to max ko update krenge or reverse list create krenge .
     ListNode* removeNodes(ListNode* head) {
