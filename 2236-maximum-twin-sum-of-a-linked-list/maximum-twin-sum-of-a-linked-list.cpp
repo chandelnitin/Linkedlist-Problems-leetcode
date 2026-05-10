@@ -48,6 +48,45 @@
 
 
 
+// /**
+//  * Definition for singly-linked list.
+//  * struct ListNode {
+//  *     int val;
+//  *     ListNode *next;
+//  *     ListNode() : val(0), next(nullptr) {}
+//  *     ListNode(int x) : val(x), next(nullptr) {}
+//  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+//  * };
+//  */
+// class Solution {
+// public: 
+//     int pairSum(ListNode* head) {
+//         stack<int>st;
+//         ListNode* temp=head;
+//         while(temp){
+//             st.push(temp->val);
+//             temp=temp->next;
+//         }
+
+//         temp=head;
+//         int sum=0; int n=st.size();
+//         int maxSum=INT_MIN;
+//         for(int i=0;i<n/2;i++){
+//             sum=temp->val+st.top();
+//             st.pop();
+//             maxSum=max(maxSum,sum);
+//             temp=temp->next;
+//         }
+        
+
+//         return maxSum;
+//     }
+// };
+
+
+
+
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -59,26 +98,35 @@
  * };
  */
 class Solution {
-public: 
+public:  // half rerve method 
     int pairSum(ListNode* head) {
-        stack<int>st;
-        ListNode* temp=head;
-        while(temp){
-            st.push(temp->val);
-            temp=temp->next;
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+       
+        ListNode* prev=NULL;
+        ListNode* curr=slow;
+        while(curr){
+            ListNode* front=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=front;
         }
 
-        temp=head;
-        int sum=0; int n=st.size();
-        int maxSum=INT_MIN;
-        for(int i=0;i<n/2;i++){
-            sum=temp->val+st.top();
-            st.pop();
+        int sum=0;int maxSum=INT_MIN;
+        ListNode*first=head;
+        ListNode* second=prev;
+        while(second){
+            sum=first->val+second->val;
+            first=first->next;
+            second=second->next;
             maxSum=max(maxSum,sum);
-            temp=temp->next;
         }
-        
 
         return maxSum;
     }
 };
+
