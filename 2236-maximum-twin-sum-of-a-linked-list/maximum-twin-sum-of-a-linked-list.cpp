@@ -98,7 +98,7 @@
  * };
  */
 class Solution {
-public:  // half rerve method 
+public:  // half rerve method // o(n) o(1)
     int pairSum(ListNode* head) {
         ListNode* slow=head;
         ListNode* fast=head;
