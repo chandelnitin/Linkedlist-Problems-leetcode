@@ -49,6 +49,60 @@
 
 
 
+// /**
+//  * Definition for singly-linked list.
+//  * struct ListNode {
+//  *     int val;
+//  *     ListNode *next;
+//  *     ListNode() : val(0), next(nullptr) {}
+//  *     ListNode(int x) : val(x), next(nullptr) {}
+//  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+//  * };
+//  */
+// class Solution {
+// public:  // ye bilkul optmal approch hai lekin iska clean code aage hai;
+//     ListNode* oddEvenList(ListNode* head) {
+//         if(head ==NULL || head->next==NULL) return head;
+//         ListNode* temp=head;
+//         ListNode* odd=head;
+//         ListNode* oddprev=temp;
+//         temp=temp->next;
+//         ListNode* even=temp;
+//         ListNode* evenprev=temp;
+//         temp=temp->next;
+//         int count=3;
+//         while(temp){
+//            if(count%2==0){
+//               evenprev->next=temp;
+//               evenprev=temp;
+//            } 
+//            else{
+//               oddprev->next=temp;
+//               oddprev=temp;
+//            }
+
+//            temp=temp->next;
+//            count++;
+//         }
+//         evenprev->next=NULL;
+//         oddprev->next=even;
+      
+//         return odd;
+//     }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -60,33 +114,26 @@
  * };
  */
 class Solution {
-public:
+public:  
     ListNode* oddEvenList(ListNode* head) {
         if(head ==NULL || head->next==NULL) return head;
-        ListNode* temp=head;
-        ListNode* odd=head;
-        ListNode* oddprev=temp;
-        temp=temp->next;
-        ListNode* even=temp;
-        ListNode* evenprev=temp;
-        temp=temp->next;
-        int count=3;
-        while(temp){
-           if(count%2==0){
-              evenprev->next=temp;
-              evenprev=temp;
-           } 
-           else{
-              oddprev->next=temp;
-              oddprev=temp;
-           }
+       ListNode* odd=head;
+       ListNode* even=odd->next;
+       ListNode* evenhead=even;
 
-           temp=temp->next;
-           count++;
-        }
-        evenprev->next=NULL;
-        oddprev->next=even;
-      
-        return odd;
+       while(even && even->next){
+           odd->next=even->next;
+           odd=odd->next;
+
+           even->next= odd->next;
+           even=even->next;
+       }
+
+       odd->next=evenhead;
+       return head;
     }
 };
+
+
+
+
